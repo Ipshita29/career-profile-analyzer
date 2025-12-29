@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Career Profile Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        h1, h2, h3 {
+            margin-top: 30px;
+        }
+        table {
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #444;
+        }
+        th, td {
+            padding: 8px 14px;
+            text-align: left;
+        }
+        hr {
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Career Profile Analyzer</h1>
+
+    <!-- INPUT FORM -->
+    <form method="POST">
+        <label><strong>Skills (comma separated):</strong></label><br>
+        <input type="text" name="skills" required><br><br>
+
+        <label><strong>Experience (years):</strong></label><br>
+        <input type="number" name="experience" min="0" required><br><br>
+
+        <label><strong>Projects (with tech stack):</strong></label><br>
+        <input
+            type="text"
+            name="projects"
+            placeholder="fablegenie(express,nodejs), aira(react native)">
+        <br><br>
+
+        <button type="submit">Analyze</button>
+    </form>
+
+    <!-- OUTPUT SECTION -->
+    {% if analysis %}
+    <hr>
+
+    <h2>===== ANALYSIS RESULT =====</h2>
+
+    <p><strong>Best suited role:</strong> {{ analysis.best_role }}</p>
+    <p><strong>ATS Score:</strong> {{ analysis.ats_score }}</p>
+    <p><strong>Selection Chance:</strong> {{ analysis.chance }}</p>
+
+    <h3>Role Match Scores:</h3>
+    <ul>
+        {% for role, score in analysis.role_scores.items() %}
+            <li>{{ role }} → {{ score }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Recommendations:</h3>
+    <ul>
+        {% for rec in analysis.recommendations %}
+            <li>{{ rec }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Skill Summary Table:</h3>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Skill Count</th>
+        </tr>
+        {% for row in analysis.skill_table %}
+        <tr>
+            <td>{{ row.Category }}</td>
+            <td>{{ row["Skill Count"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <!-- CHART -->
+    {% if chart_ready %}
+    <h3>Skill Distribution</h3>
+    <img src="/static/charts/skill_distribution.png" width="700">
+    {% endif %}
+
+</body>
+</html>

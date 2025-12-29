@@ -1,9 +1,8 @@
 from data.skills_db import SKILL_CATEGORY
-from input_parser import get_user_input
 
-def map_skills_to_categories():
-    skills_list, project_skills, experience_years = get_user_input()
-    all_skills = skills_list + project_skills
+def map_skills_to_categories(skills_list, project_skills):
+    # ✅ SINGLE COUNT PER SKILL
+    all_skills = set(skills_list + project_skills)
 
     category_count = {
         "frontend": 0,
@@ -19,6 +18,4 @@ def map_skills_to_categories():
             category = SKILL_CATEGORY[skill]
             category_count[category] += 1
 
-    return category_count, experience_years
-
-
+    return category_count
