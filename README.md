@@ -39,28 +39,6 @@ The project is built using a Flask backend with a clean HTML/CSS frontend and vi
 
 ---
 
-## 📂 Project Structure
-
-project/
-├── app.py # Flask web application
-├── main.py # CLI version
-├── input_parser.py # Input parsing logic
-├── skill_mapper.py # Skill-to-category mapping
-├── role_inference.py # Role similarity calculation
-├── ats_scorer.py # ATS score calculation
-├── recommendations.py # Skill improvement suggestions
-├── role_profiles.py # Role skill weight definitions
-├── visualization.py # Matplotlib charts
-├── templates/
-│ └── index.html # Frontend template
-├── static/
-│ └── charts/
-│ └── skill_distribution.png
-└── data/
-└── skills_db.py # Skill-category database
-
----
-
 ## ▶️ How to Run the Project
 
 ### 1️⃣ Install dependencies
