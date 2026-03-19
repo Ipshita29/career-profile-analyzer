@@ -1,97 +1,394 @@
 <!DOCTYPE html>
-<html>
+<html class="dark" lang="en">
 <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Career Profile Analyzer</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary-dim": "#8abbff",
+                "surface-container-high": "#1f1f22",
+                "primary": "#a4c9ff",
+                "on-surface": "#e7e5e8",
+                "on-background": "#e7e5e8",
+                "primary-fixed": "#d4e3ff",
+                "surface": "#0e0e0f",
+                "on-secondary-fixed-variant": "#435f6d",
+                "tertiary-fixed-dim": "#cecfef",
+                "surface-container-highest": "#252628",
+                "surface-variant": "#252628",
+                "primary-fixed-dim": "#bcd6ff",
+                "outline-variant": "#48484b",
+                "on-error": "#490106",
+                "on-primary-container": "#b5d2ff",
+                "on-secondary-fixed": "#264350",
+                "on-surface-variant": "#acaaae",
+                "inverse-surface": "#fcf8f9",
+                "tertiary-dim": "#cecfef",
+                "on-tertiary": "#555671",
+                "surface-container": "#19191b",
+                "surface-container-lowest": "#000000",
+                "error-dim": "#bb5551",
+                "inverse-primary": "#0060ad",
+                "outline": "#757578",
+                "secondary-dim": "#85a2b1",
+                "secondary-fixed-dim": "#bbd9e9",
+                "on-secondary": "#02232f",
+                "surface-container-low": "#131315",
+                "secondary": "#85a2b1",
+                "secondary-container": "#223f4c",
+                "surface-dim": "#0e0e0f",
+                "on-primary": "#004178",
+                "on-tertiary-fixed-variant": "#565873",
+                "on-tertiary-container": "#4c4e69",
+                "error": "#ee7d77",
+                "on-primary-fixed": "#004076",
+                "surface-tint": "#a4c9ff",
+                "on-secondary-container": "#a6c4d3",
+                "primary-container": "#004883",
+                "surface-bright": "#2b2c2f",
+                "secondary-fixed": "#c9e7f7",
+                "inverse-on-surface": "#565556",
+                "on-tertiary-fixed": "#3a3c55",
+                "tertiary-fixed": "#ddddfe",
+                "tertiary-container": "#ddddfe",
+                "on-error-container": "#ff9993",
+                "background": "#0e0e0f",
+                "on-primary-fixed-variant": "#005da7",
+                "error-container": "#7f2927",
+                "tertiary": "#edecff"
+              },
+              fontFamily: {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
     <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
+            font-family: 'Inter', sans-serif;
+            background-color: #0e0e0f;
+            color: #e7e5e8;
         }
-        h1, h2, h3 {
-            margin-top: 30px;
+        h1, h2, h3, .font-headline {
+            font-family: 'Manrope', sans-serif;
         }
-        table {
-            border-collapse: collapse;
-            margin-top: 10px;
+        /* Custom scrollbar for better dark mode aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        table, th, td {
-            border: 1px solid #444;
+        ::-webkit-scrollbar-track {
+            background: #0e0e0f;
         }
-        th, td {
-            padding: 8px 14px;
-            text-align: left;
+        ::-webkit-scrollbar-thumb {
+            background: #252628;
+            border-radius: 4px;
         }
-        hr {
-            margin: 40px 0;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #48484b;
         }
     </style>
 </head>
-<body>
+<body class="bg-background text-on-background min-h-screen">
+    <!-- Top Navigation Shell -->
+    <nav class="bg-[#0e0e0f] shadow-[0_0_40px_rgba(164,201,255,0.06)] flex justify-between items-center w-full px-8 py-6 max-w-full mx-auto fixed top-0 z-50">
+        <div class="flex items-center gap-8">
+            <span class="text-2xl font-bold tracking-tighter text-[#e7e5e8]">Career Profile Analyzer</span>
+            <div class="hidden md:flex gap-6">
+                <a class="text-[#a4c9ff] font-semibold border-b-2 border-[#a4c9ff] pb-1" href="/">Dashboard</a>
+                <a class="text-[#acaaae] hover:text-[#e7e5e8] transition-colors" href="#">Skill Analysis</a>
+                <a class="text-[#acaaae] hover:text-[#e7e5e8] transition-colors" href="#">Market Trends</a>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="p-2 hover:bg-[#252628] rounded-full transition-all duration-300 active:scale-95">
+                <span class="material-symbols-outlined text-[#a4c9ff]">account_circle</span>
+            </button>
+            <button class="p-2 hover:bg-[#252628] rounded-full transition-all duration-300 active:scale-95">
+                <span class="material-symbols-outlined text-[#a4c9ff]">settings</span>
+            </button>
+        </div>
+    </nav>
 
-    <h1>Career Profile Analyzer</h1>
+    <!-- Sidebar Navigation Shell -->
+    <aside class="fixed left-0 top-0 h-full hidden lg:flex flex-col p-4 z-40 bg-[#131315] w-64 pt-24">
+        <div class="mb-8 px-4">
+            <h2 class="text-[#e7e5e8] font-['Manrope'] font-bold text-lg">Professional Dossier</h2>
+            <p class="text-on-surface-variant text-xs">The Silent Consultant</p>
+        </div>
+        <div class="flex flex-col gap-2">
+            <a class="flex items-center gap-3 bg-[#19191b] text-[#a4c9ff] rounded-xl px-4 py-3 border-l-4 border-[#a4c9ff] transition-transform duration-300 hover:translate-x-1" href="/">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="font-medium text-sm">Dashboard</span>
+            </a>
+            <a class="flex items-center gap-3 text-[#acaaae] px-4 py-3 hover:bg-[#19191b]/50 hover:text-[#e7e5e8] transition-transform duration-300 hover:translate-x-1" href="#">
+                <span class="material-symbols-outlined">analytics</span>
+                <span class="font-medium text-sm">Skill Analysis</span>
+            </a>
+            <a class="flex items-center gap-3 text-[#acaaae] px-4 py-3 hover:bg-[#19191b]/50 hover:text-[#e7e5e8] transition-transform duration-300 hover:translate-x-1" href="#">
+                <span class="material-symbols-outlined">trending_up</span>
+                <span class="font-medium text-sm">Market Trends</span>
+            </a>
+            <a class="flex items-center gap-3 text-[#acaaae] px-4 py-3 hover:bg-[#19191b]/50 hover:text-[#e7e5e8] transition-transform duration-300 hover:translate-x-1" href="#">
+                <span class="material-symbols-outlined">person</span>
+                <span class="font-medium text-sm">Profile Settings</span>
+            </a>
+        </div>
+        <div class="mt-auto p-4">
+            <a href="/" class="block w-full text-center py-3 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-full font-semibold text-sm hover:brightness-110 transition-all active:scale-95">
+                New Analysis
+            </a>
+        </div>
+    </aside>
 
-    <!-- INPUT FORM -->
-    <form method="POST">
-        <label><strong>Skills (comma separated):</strong></label><br>
-        <input type="text" name="skills" required><br><br>
+    <!-- Main Content Canvas -->
+    <main class="lg:ml-64 pt-28 px-6 pb-12 max-w-7xl mx-auto">
+        <!-- Header Section -->
+        <header class="mb-12">
+            <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight text-on-surface mb-2">Career Profile Analyzer</h1>
+            <p class="text-xl text-on-surface-variant max-w-2xl font-light">Analyze your skills. Discover your career path.</p>
+        </header>
 
-        <label><strong>Experience (years):</strong></label><br>
-        <input type="number" name="experience" min="0" required><br><br>
+        <!-- Bento Grid Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Analysis Input Form (Left Column) -->
+            <section class="lg:col-span-5 flex flex-col gap-8">
+                <div class="bg-surface-container-low rounded-xl p-8 shadow-sm">
+                    <h2 class="text-xl font-bold mb-6 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">psychology</span>
+                        Input Dossier
+                    </h2>
+                    <form action="/" class="space-y-6" method="POST">
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-on-surface-variant">Skills (Comma-separated)</label>
+                            <input class="w-full bg-surface-container-lowest border-none focus:ring-1 focus:ring-primary rounded-xl p-4 text-on-surface placeholder:text-outline/50 transition-all" 
+                                   name="skills" placeholder="e.g. HTML, CSS, Python" type="text" required value="{{ request.form.get('skills', '') }}"/>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-on-surface-variant">Years of Experience</label>
+                            <input class="w-full bg-surface-container-lowest border-none focus:ring-1 focus:ring-primary rounded-xl p-4 text-on-surface placeholder:text-outline/50 transition-all" 
+                                   name="experience" placeholder="3" type="number" min="0" required value="{{ request.form.get('experience', '') }}"/>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-on-surface-variant">Key Projects &amp; Achievements</label>
+                            <textarea class="w-full bg-surface-container-lowest border-none focus:ring-1 focus:ring-primary rounded-xl p-4 text-on-surface placeholder:text-outline/50 transition-all resize-none" 
+                                      name="projects" placeholder="project1(skill1,skill2,..)" rows="5">{{ request.form.get('projects', '') }}</textarea>
+                        </div>
+                        <button class="w-full py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-full font-bold text-lg shadow-[0_0_20px_rgba(164,201,255,0.1)] hover:brightness-110 active:scale-[0.98] transition-all" type="submit">
+                            Generate Analysis
+                        </button>
+                    </form>
+                </div>
 
-        <label><strong>Projects (with tech stack):</strong></label><br>
-        <input
-            type="text"
-            name="projects"
-            placeholder="fablegenie(express,nodejs), aira(react native)">
-        <br><br>
+                <!-- Market Trend Placeholder -->
+                <div class="bg-surface-container rounded-xl p-8">
+                    <h3 class="text-sm font-bold text-primary mb-4 uppercase tracking-widest">Market Insights</h3>
+                    <div class="flex items-end gap-2 h-32 px-4">
+                        <div class="w-full bg-surface-container-highest rounded-t-lg h-[40%] transition-all hover:h-[50%]"></div>
+                        <div class="w-full bg-primary/20 rounded-t-lg h-[60%] transition-all hover:h-[70%]"></div>
+                        <div class="w-full bg-primary/40 rounded-t-lg h-[85%] transition-all hover:h-[95%]"></div>
+                        <div class="w-full bg-primary rounded-t-lg h-[70%] transition-all hover:h-[80%]"></div>
+                        <div class="w-full bg-surface-container-highest rounded-t-lg h-[30%] transition-all hover:h-[40%]"></div>
+                    </div>
+                    <p class="mt-4 text-xs text-on-surface-variant leading-relaxed">Demand for AI-related roles has increased by 14% in your region over the last quarter.</p>
+                </div>
+            </section>
 
-        <button type="submit">Analyze</button>
-    </form>
+            <!-- Results Section (Right Column) -->
+            <section class="lg:col-span-7 space-y-8">
+                {% if analysis %}
+                <!-- Main Result Card -->
+                <div class="bg-surface-container-low rounded-xl p-8 relative overflow-hidden">
+                    <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 blur-[100px] rounded-full"></div>
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                        <div>
+                            <span class="text-xs font-bold text-primary-dim uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full">Best Match</span>
+                            <h2 class="text-3xl font-extrabold mt-2">{{ analysis.best_role }}</h2>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-medium text-on-surface-variant uppercase">Selection Chance:</span>
+                            <span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-lg font-bold text-xs">{{ analysis.chance }}</span>
+                        </div>
+                    </div>
 
-    <!-- OUTPUT SECTION -->
+                    <!-- ATS Score & Detailed Match -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div class="bg-surface-container-lowest rounded-xl p-6">
+                            <div class="flex justify-between items-end mb-2">
+                                <span class="text-sm text-on-surface-variant">ATS Compatibility</span>
+                                <span class="text-2xl font-bold text-primary">{{ analysis.ats_score }}%</span>
+                            </div>
+                            <div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-primary-container to-primary" style="width: {{ analysis.ats_score }}%"></div>
+                            </div>
+                        </div>
+                        <div class="bg-surface-container-lowest rounded-xl p-6">
+                            <div class="flex justify-between items-end mb-2">
+                                <span class="text-sm text-on-surface-variant">Role Fit Confidence</span>
+                                <span class="text-2xl font-bold text-secondary-dim">{{ (analysis.role_scores[analysis.best_role] * 100)|round|int }}%</span>
+                            </div>
+                            <div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+                                <div class="h-full bg-secondary-dim" style="width: {{ (analysis.role_scores[analysis.best_role] * 100)|round|int }}%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Role Match Breakdown -->
+                    <div class="space-y-4 mb-8">
+                        <h3 class="text-sm font-bold text-on-surface-variant uppercase tracking-wider">Top Role Matches</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {% for role, score in analysis.role_scores.items() %}
+                            {% if loop.index <= 4 %}
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-xs font-medium">
+                                    <span>{{ role }}</span>
+                                    <span>{{ (score * 100)|round|int }}%</span>
+                                </div>
+                                <div class="w-full h-1.5 bg-surface-container-highest rounded-full">
+                                    <div class="h-full bg-primary" style="width: {{ (score * 100)|round|int }}%"></div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Recommendations List -->
+                    <div class="space-y-4">
+                        <h3 class="text-sm font-bold text-on-surface-variant uppercase tracking-wider">Strategic Recommendations</h3>
+                        <ul class="grid grid-cols-1 gap-3">
+                            {% for rec in analysis.recommendations %}
+                            <li class="flex items-start gap-3 bg-surface-container/50 p-4 rounded-xl border-l-2 border-primary">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">verified_user</span>
+                                <p class="text-sm text-on-surface">{{ rec }}</p>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Skill Summary Table -->
+                <div class="bg-surface-container-low rounded-xl overflow-hidden">
+                    <div class="p-6 border-b border-outline-variant/10">
+                        <h3 class="font-bold">Skill Maturity Matrix</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="bg-surface-container-highest/30 text-xs uppercase tracking-widest text-on-surface-variant">
+                                    <th class="px-6 py-4">Skill Category</th>
+                                    <th class="px-6 py-4">Count</th>
+                                    <th class="px-6 py-4">Visual Insight</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-outline-variant/5">
+                                {% for row in analysis.skill_table %}
+                                <tr class="hover:bg-surface-container/30 transition-colors">
+                                    <td class="px-6 py-4 text-sm font-medium">{{ row.Category }}</td>
+                                    <td class="px-6 py-4 text-sm text-on-surface-variant text-center">{{ row["Skill Count"] }}</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-1">
+                                            {% for i in range(row["Skill Count"]) %}
+                                            <span class="w-2 h-2 rounded-full bg-primary"></span>
+                                            {% endfor %}
+                                            {% if row["Skill Count"] == 0 %}
+                                            <span class="text-xs text-on-surface-variant italic">No skills identified</span>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                {% if chart_ready %}
+                <!-- Charts Section -->
+                <div class="grid grid-cols-1 gap-8">
+                    <div class="bg-surface-container-low rounded-xl p-8">
+                        <h3 class="text-sm font-bold text-on-surface-variant uppercase tracking-widest mb-6">Skill Distribution Analysis</h3>
+                        <div class="bg-surface-container-highest/30 rounded-xl p-4 flex items-center justify-center">
+                            <img src="/static/charts/skill_distribution.png" alt="Skill Distribution Chart" class="max-w-full h-auto rounded-lg shadow-lg border border-outline-variant/10">
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% else %}
+                <!-- Welcome/Empty State -->
+                <div class="bg-surface-container-low rounded-xl p-12 text-center flex flex-col items-center justify-center min-h-[400px]">
+                    <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
+                        <span class="material-symbols-outlined text-4xl">analytics</span>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-4">Analyze Your Profile</h2>
+                    <p class="text-on-surface-variant max-w-md mx-auto mb-8">
+                        Enter your skills and projects in the form to generate a comprehensive career profile analysis with ATS scoring and role matching.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-2xl">
+                        <div class="p-4 bg-surface-container rounded-xl border border-outline-variant/5">
+                            <h4 class="font-bold text-primary mb-1">ATS Optimization</h4>
+                            <p class="text-xs text-on-surface-variant">Get insight on how well your profile passes filters.</p>
+                        </div>
+                        <div class="p-4 bg-surface-container rounded-xl border border-outline-variant/5">
+                            <h4 class="font-bold text-primary mb-1">Role Matching</h4>
+                            <p class="text-xs text-on-surface-variant">Find the best fit among dozens of professional roles.</p>
+                        </div>
+                        <div class="p-4 bg-surface-container rounded-xl border border-outline-variant/5">
+                            <h4 class="font-bold text-primary mb-1">Visualized Data</h4>
+                            <p class="text-xs text-on-surface-variant">See your skill distribution through dynamic charts.</p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="lg:ml-64 px-8 py-12 border-t border-outline-variant/10 text-center text-on-surface-variant text-sm">
+        <p>© 2026 Career Profile Analyzer • Built with Flask & Matplotlib • Editorial Dark Mode UI</p>
+    </footer>
+
     {% if analysis %}
-    <hr>
-
-    <h2>===== ANALYSIS RESULT =====</h2>
-
-    <p><strong>Best suited role:</strong> {{ analysis.best_role }}</p>
-    <p><strong>ATS Score:</strong> {{ analysis.ats_score }}</p>
-    <p><strong>Selection Chance:</strong> {{ analysis.chance }}</p>
-
-    <h3>Role Match Scores:</h3>
-    <ul>
-        {% for role, score in analysis.role_scores.items() %}
-            <li>{{ role }} → {{ score }}</li>
-        {% endfor %}
-    </ul>
-
-    <h3>Recommendations:</h3>
-    <ul>
-        {% for rec in analysis.recommendations %}
-            <li>{{ rec }}</li>
-        {% endfor %}
-    </ul>
-
-    <h3>Skill Summary Table:</h3>
-    <table>
-        <tr>
-            <th>Category</th>
-            <th>Skill Count</th>
-        </tr>
-        {% for row in analysis.skill_table %}
-        <tr>
-            <td>{{ row.Category }}</td>
-            <td>{{ row["Skill Count"] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <!-- Success Modal Notification -->
+    <div id="notification" class="fixed bottom-8 right-8 bg-surface-bright/80 backdrop-blur-xl border border-outline-variant/10 rounded-2xl p-4 shadow-2xl flex items-center gap-4 max-w-sm transition-all duration-500 animate-bounce">
+        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined">auto_awesome</span>
+        </div>
+        <div>
+            <h4 class="text-sm font-bold">Analysis Ready</h4>
+            <p class="text-xs text-on-surface-variant">Profile matched to <b>{{ analysis.best_role }}</b> with {{ analysis.ats_score }}% compatibility.</p>
+        </div>
+        <button onclick="document.getElementById('notification').style.display='none'" class="ml-auto text-on-surface-variant hover:text-on-surface">
+            <span class="material-symbols-outlined text-sm">close</span>
+        </button>
+    </div>
     {% endif %}
 
-    <!-- CHART -->
-    {% if chart_ready %}
-    <h3>Skill Distribution</h3>
-    <img src="/static/charts/skill_distribution.png" width="700">
-    {% endif %}
-
+    <script>
+        // Auto-hide notification after 10 seconds
+        setTimeout(() => {
+            const notif = document.getElementById('notification');
+            if (notif) {
+                notif.style.opacity = '0';
+                setTimeout(() => notif.style.display = 'none', 500);
+            }
+        }, 10000);
+    </script>
 </body>
 </html>

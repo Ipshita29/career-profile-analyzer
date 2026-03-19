@@ -17,9 +17,17 @@ def home():
     chart_ready = False
 
     if request.method == "POST":
-        skills_input = request.form.get("skills")
-        projects_input = request.form.get("projects")
-        experience_input = request.form.get("experience")
+        skills_input = request.form.get("skills", "").strip()
+        projects_input = request.form.get("projects", "").strip()
+        experience_input = request.form.get("experience", "0").strip()
+
+        if not skills_input:
+            return render_template(
+                "index.html",
+                analysis=None,
+                chart_ready=False,
+                error="Please enter your skills to begin analysis."
+            )
 
         # 1️⃣ parse input
         skills, project_skills, experience_years = parse_input(
@@ -75,6 +83,6 @@ def home():
     )
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    port = int(os.environ.get("PORT", 8000))
+    app.run(host="0.0.0.0", port=port,debug=True)
 
