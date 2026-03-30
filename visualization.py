@@ -3,6 +3,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import os
 
+import io
+import base64
+
 def plot_skill_distribution(category_count):
     categories = []
     values = []
@@ -11,6 +14,9 @@ def plot_skill_distribution(category_count):
         if count > 0:
             categories.append(category.replace("_", " ").title())
             values.append(count)
+
+    if not categories:
+        return None
 
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 
@@ -24,6 +30,12 @@ def plot_skill_distribution(category_count):
     axes[1].set_title("Skill Distribution by Category (Pie)")
 
     plt.tight_layout()
-    os.makedirs("static/charts", exist_ok=True)
-    plt.savefig("static/charts/skill_distribution.png")
+    
+    # Save to buffer
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    image_base64 = base64.b64encode(buf.read()).decode('utf-8')
     plt.close()
+    
+    return image_base64

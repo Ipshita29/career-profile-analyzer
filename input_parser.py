@@ -1,8 +1,8 @@
 def parse_input(skill_input, project_input, experience_input):
-    # ---- SKILLS ----
+    # SKILLS 
     skills = [s.strip().lower() for s in skill_input.split(",") if s.strip()]
 
-    # ---- PROJECTS ----
+    # PROJECTS
     project_skills = []
     projects = project_input.lower().split("),")
     for project in projects:
@@ -13,7 +13,7 @@ def parse_input(skill_input, project_input, experience_input):
                 if s:
                     project_skills.append(s)
 
-    # ---- EXPERIENCE ----
+    # EXPERIENCE 
     try:
         experience = float(experience_input)
     except:

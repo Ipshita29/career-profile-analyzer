@@ -61,8 +61,8 @@ def home():
         )
 
         # 7️⃣ plot
-        plot_skill_distribution(category_count)
-        chart_ready = True
+        chart_base64 = plot_skill_distribution(category_count)
+        chart_ready = chart_base64 is not None
 
         analysis = {
             "best_role": best_role.replace("_", " ").title(),
@@ -73,7 +73,8 @@ def home():
                 for k, v in role_scores.items()
             },
             "recommendations": recommendations,
-            "skill_table": df.to_dict(orient="records")
+            "skill_table": df.to_dict(orient="records"),
+            "chart_base64": chart_base64
         }
 
     return render_template(
